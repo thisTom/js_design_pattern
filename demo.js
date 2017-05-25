@@ -1,3 +1,4 @@
+////面向对象编程=>代码高复用
 //父类的定义与子类继承
 ;(function () {
     //借用闭包创建类
@@ -65,6 +66,41 @@
     var testObj=new subClass('thisTom','Pp');
     testObj.getFullName();
     testObj.shareFunc();
+})();
+
+////创建型设计模式
+//抽象工厂模式
+;(function () {
+    //定义抽象基类 =>检测并继承
+    var VehicleFactory=function (subClass,superClass) {
+        //检测是否创建需要继承的簇类
+        if(VehicleFactory[superClass]==='function'){
+            //继承父类属性与方法
+            function F () {};
+            F.prototype=new VehicleFactory(superClass);
+            subClass.constructor=superClass;
+            subClass.prototype=new F();
+        }else{
+            return new Error('未创建改抽象类');
+        }
+    }
+    //汽车抽象簇类
+    VehicleFactory.Car=function () {
+        this.name='car';
+    }
+    VehicleFactory.Car.prototype={}
+    //火车抽簇类
+    VehicleFactory.Train=function () {
+        this.name='train';
+    }
+    VehicleFactory.Train.prototype={}
+
+    //调用
+    var Bwm=function () {
+        this.name='bwm'
+    }
+    Bwm.prototype={};
+    VehicleFactory(Bwm,'Car');
 })();
 
 
