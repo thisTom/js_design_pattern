@@ -94,7 +94,6 @@
         this.name='train';
     }
     VehicleFactory.Train.prototype={}
-
     //调用
     var Bwm=function () {
         this.name='bwm'
