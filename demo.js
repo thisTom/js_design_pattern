@@ -78,7 +78,8 @@
             //继承父类属性与方法
             function F () {};
             F.prototype=new VehicleFactory(superClass);
-            subClass.constructor=superClass;
+            //子类原型指向子类
+            subClass.constructor=subClass;
             subClass.prototype=new F();
         }else{
             return new Error('未创建改抽象类');
