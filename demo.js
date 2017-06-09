@@ -1,6 +1,6 @@
 ////面向对象编程=>代码高复用
 //父类的定义与子类继承
-;(function () {
+(function () {
     //借用闭包创建类
     var Superclass=function () {//闭包封闭
         //静态私有变量
@@ -69,8 +69,8 @@
 })();
 
 ////创建型设计模式
-//抽象工厂模式
-;(function () {
+//抽象工厂模式 =>工厂模式主要用于创建对象实例或者类簇（抽象工厂）
+(function () {
     //定义抽象基类 =>检测并继承
     var VehicleFactory=function (subClass,superClass) {
         //检测是否创建需要继承的簇类
@@ -89,7 +89,11 @@
     VehicleFactory.Car=function () {
         this.name='car';
     }
-    VehicleFactory.Car.prototype={}
+    VehicleFactory.Car.prototype={
+        getPrice:function () {
+            return new Error('抽象方法不能直接调用，用于提示子类重定义')
+        }
+    }
     //火车抽簇类
     VehicleFactory.Train=function () {
         this.name='train';
@@ -103,4 +107,15 @@
     VehicleFactory(Bwm,'Car');
 })();
 
+//创建者模式 =>相比于工厂模式，此模式更关注创建对象实例时的过程，创建出的对象的每个细节。
+(function () {
+    //实例化对象子类模块化，进行更细致的逻辑类编写
+    var Person=function (name,work) {
+        var _person=new Human();
+        _person.name=new Named(name);
+        _person.work=new Work(work);
+        return _person;
+    };
+    var person=new Person('thisTom','coder');
+})();
 
